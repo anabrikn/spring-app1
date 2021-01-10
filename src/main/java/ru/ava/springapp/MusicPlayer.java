@@ -1,56 +1,50 @@
 package ru.ava.springapp;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class MusicPlayer {
-    private List<Music> playList = new ArrayList<>();
+    // внедрение через поля
+    //@Autowired
+    private ClassicalMusic classicalMusic;
+    private RockMusic rockMusic;
+    private ReggaeMusic reggaeMusic;
 
-    private String name;
-    private int volume;
-
-    public MusicPlayer() {
+    // внедрение через конструктор
+    @Autowired
+    public MusicPlayer(ClassicalMusic classicalMusic, RockMusic rockMusic, ReggaeMusic reggaeMusic) {
+        this.classicalMusic = classicalMusic;
+        this.rockMusic = rockMusic;
+        this.reggaeMusic = reggaeMusic;
     }
 
-    public MusicPlayer(List<Music> playList) {
-        this.playList = playList;
-    }
-
-
-    // IoC
+    /*
+    // внедрение через конструктор
+    //@Autowired 
     public MusicPlayer(Music music) {
-        this.playList.add(music);
+        this.music = music;
     }
 
-
-    public void playMusic() {
-        for (Music music : playList) {
-            System.out.println("Playing: " + music.getSong());
-        }
+    // внедрение через сеттер
+    //@Autowired
+    public void setMusic(Music music) {
+        this.music = music;
     }
+    */
 
-    public List<Music> getPlayList() {
-        return playList;
+
+    public String playMusic() {
+        return new StringBuilder("Playing: ")
+                .append(System.lineSeparator())
+                .append(classicalMusic.getSong())
+                .append(System.lineSeparator())
+                .append(rockMusic.getSong())
+                .append(System.lineSeparator())
+                .append(reggaeMusic.getSong())
+                .toString();
     }
-
-    public void setPlayList(List<Music> playList) {
-        this.playList = playList;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getVolume() {
-        return volume;
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
-    }
-
 }
