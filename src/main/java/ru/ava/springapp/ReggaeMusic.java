@@ -1,5 +1,8 @@
 package ru.ava.springapp;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class ReggaeMusic implements Music {
 
     public void initReggaeMusicBean() {

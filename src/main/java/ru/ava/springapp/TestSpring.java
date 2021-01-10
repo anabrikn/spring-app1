@@ -8,10 +8,13 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-        // для объектов в бине musicPlayer prototype вызывается только init
-        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        Music music = context.getBean("rockMusic", Music.class);// ("someRockMusic", Music.class);
+        MusicPlayer musicPlayer = new MusicPlayer(music);
         musicPlayer.playMusic();
 
+        Music classicalMusic = context.getBean("classicalMusic", Music.class);
+        MusicPlayer classicalMusicPlayer = new MusicPlayer(classicalMusic);
+        classicalMusicPlayer.playMusic();
 
         context.close();
     }

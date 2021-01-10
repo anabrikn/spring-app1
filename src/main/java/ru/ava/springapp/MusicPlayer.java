@@ -16,12 +16,12 @@ public class MusicPlayer {
         this.playList = playList;
     }
 
-    /*
+
     // IoC
     public MusicPlayer(Music music) {
-        this.music = music;
+        this.playList.add(music);
     }
-     */
+
 
     public void playMusic() {
         for (Music music : playList) {
