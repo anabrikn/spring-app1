@@ -8,28 +8,13 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-        //Music music = context.getBean("musicBean", Music.class);
-        //MusicPlayer musicPlayer = new MusicPlayer(music);
+        // destroy вызывается - , т.к. singleton
+        ClassicalMusic classicalMusic = context.getBean("musicClassicalBean", ClassicalMusic.class);
+        System.out.println(classicalMusic.getSong());
 
-        MusicPlayer firstMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-        MusicPlayer secondMusicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
-
-        // scope singleton
-        boolean comp = firstMusicPlayer == secondMusicPlayer;
-        System.out.println(comp);
-
-        System.out.println(firstMusicPlayer);
-        System.out.println(secondMusicPlayer);
-
-        firstMusicPlayer.setVolume(10);
-        System.out.println(firstMusicPlayer.getVolume());
-        System.out.println(secondMusicPlayer.getVolume());
-
-        // beans list
-        firstMusicPlayer.playMusic();
-
-        System.out.println(firstMusicPlayer.getName());
-        System.out.println(firstMusicPlayer.getVolume());
+        // для объектов в бине musicPlayer вызывается только init
+        MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
+        musicPlayer.playMusic();
 
         context.close();
     }
