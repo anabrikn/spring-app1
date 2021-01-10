@@ -8,13 +8,10 @@ public class TestSpring {
                 "applicationContext.xml"
         );
 
-        // destroy вызывается - , т.к. singleton
-        ClassicalMusic classicalMusic = context.getBean("musicClassicalBean", ClassicalMusic.class);
-        System.out.println(classicalMusic.getSong());
-
-        // для объектов в бине musicPlayer вызывается только init
+        // для объектов в бине musicPlayer prototype вызывается только init
         MusicPlayer musicPlayer = context.getBean("musicPlayer", MusicPlayer.class);
         musicPlayer.playMusic();
+
 
         context.close();
     }
