@@ -2,8 +2,18 @@ package ru.ava.springapp;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component //("someRockMusic")
 public class RockMusic implements Music {
+    List<String> list = new ArrayList<>();
+
+    {
+        list.add("Believer");
+        list.add("Thunder");
+        list.add("Natural");
+    }
 
     public void initRockMusicBean() {
         System.out.println("Initialization");
@@ -14,7 +24,7 @@ public class RockMusic implements Music {
     }
 
     @Override
-    public String getSong() {
-        return "Believer";
+    public List<String> getSongs() {
+        return list;
     }
 }

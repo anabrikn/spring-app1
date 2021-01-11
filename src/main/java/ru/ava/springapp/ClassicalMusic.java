@@ -2,9 +2,18 @@ package ru.ava.springapp;
 
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Component
 public class ClassicalMusic implements Music {
+    List<String> list = new ArrayList<>();
 
+    {
+        list.add("The Four Seasons");
+        list.add("Moonlight Sonata");
+        list.add("Tritsch-Tratsch-Polka");
+    }
     private ClassicalMusic() {
 
     }
@@ -28,7 +37,7 @@ public class ClassicalMusic implements Music {
     }
 
     @Override
-    public String getSong() {
-        return "Moonlight Sonata";
+    public List<String> getSongs() {
+        return list;
     }
 }
