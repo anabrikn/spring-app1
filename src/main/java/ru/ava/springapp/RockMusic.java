@@ -1,11 +1,13 @@
 package ru.ava.springapp;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component //("someRockMusic")
+@Component
+@Scope("prototype")
 public class RockMusic implements Music {
     List<String> list = new ArrayList<>();
 

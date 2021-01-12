@@ -1,11 +1,13 @@
 package ru.ava.springapp;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
+@Scope("singleton")
 public class ClassicalMusic implements Music {
     List<String> list = new ArrayList<>();
 
@@ -14,18 +16,8 @@ public class ClassicalMusic implements Music {
         list.add("Moonlight Sonata");
         list.add("Tritsch-Tratsch-Polka");
     }
-    private ClassicalMusic() {
+    ClassicalMusic() {
 
-    }
-
-    /**
-     * Factory Method
-     * пока scope = singleton, spring создаст только один объект
-     * и каждый раз будет давать ссылку именно на него
-     * @return ClassicalMusic
-     */
-    public static ClassicalMusic getClassicalMusic() {
-        return new ClassicalMusic();
     }
 
     public void initClassicalMusicBean() {

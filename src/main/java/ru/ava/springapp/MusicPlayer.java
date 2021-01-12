@@ -2,12 +2,18 @@ package ru.ava.springapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
 @Component
 public class MusicPlayer {
+    @Value("${musicPlayer.name}")
+    private String name;
+    @Value("${musicPlayer.volume}")
+    private int volume;
+
     private Music classicalMusic;
     private Music rockMusic;
     private Music reggaeMusic;
@@ -19,6 +25,14 @@ public class MusicPlayer {
         this.classicalMusic = classicalMusic;
         this.rockMusic = rockMusic;
         this.reggaeMusic = reggaeMusic;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getVolume() {
+        return volume;
     }
 
     public void playMusic(GenreMusic genreMusic) {
@@ -36,33 +50,4 @@ public class MusicPlayer {
                 break;
         }
     }
-
-
 }
-
-/*
-    private Music classicalMusic;
-    private Music rockMusic;
-    private Music reggaeMusic;
-
-    // внедрение через конструктор
-    @Autowired
-    public MusicPlayer(@Qualifier("classicalMusic") Music classicalMusic,
-                       @Qualifier("rockMusic") Music rockMusic,
-                       @Qualifier("reggaeMusic") Music reggaeMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
-        this.reggaeMusic = reggaeMusic;
-    }
-
-    public String playMusic() {
-        return new StringBuilder("Playing: ")
-                .append(System.lineSeparator())
-                .append(classicalMusic.getSong())
-                .append(System.lineSeparator())
-                .append(rockMusic.getSong())
-                .append(System.lineSeparator())
-                .append(reggaeMusic.getSong())
-                .toString();
-    }
-     */
