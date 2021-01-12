@@ -19,8 +19,9 @@ public class TestSpring {
 
         RockMusic rockMusic1 = context.getBean("rockMusic", RockMusic.class);
         RockMusic rockMusic2 = context.getBean("rockMusic", RockMusic.class);
-
         System.out.print("Scope prototype. rockMusic1 and rockMusic2 are the same object: ");
         System.out.println(rockMusic1==rockMusic2);
+
+        context.close();
     }
 }

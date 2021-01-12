@@ -19,9 +19,9 @@ public class MusicPlayer {
     private Music reggaeMusic;
 
     @Autowired
-    public MusicPlayer(Music classicalMusic,
-                       Music rockMusic,
-                       Music reggaeMusic) {
+    public MusicPlayer(@Qualifier("classicalMusic") Music classicalMusic,
+                       @Qualifier("rockMusic") Music rockMusic,
+                       @Qualifier("reggaeMusic") Music reggaeMusic) {
         this.classicalMusic = classicalMusic;
         this.rockMusic = rockMusic;
         this.reggaeMusic = reggaeMusic;

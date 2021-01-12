@@ -3,6 +3,8 @@ package ru.ava.springapp;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +19,12 @@ public class RockMusic implements Music {
         list.add("Natural");
     }
 
+    @PostConstruct
     public void initRockMusicBean() {
         System.out.println("Initialization");
     }
 
+    @PreDestroy // у бинов с scope("prototype") этот метод спрингом не выполняется
     public void destroyRockMusicBean() {
         System.out.println("Destroying object");
     }

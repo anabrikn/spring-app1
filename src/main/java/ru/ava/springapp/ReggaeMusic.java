@@ -2,6 +2,8 @@ package ru.ava.springapp;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +17,12 @@ public class ReggaeMusic implements Music {
         list.add("Baby, I Love Your Way");
     }
 
+    @PostConstruct
     public void initReggaeMusicBean() {
         System.out.println("Initialization");
     }
 
+    @PreDestroy
     public void destroyReggaeMusicBean() {
         System.out.println("Destroying object");
     }
