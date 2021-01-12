@@ -7,7 +7,7 @@ import javax.annotation.PreDestroy;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+//@Component
 public class ReggaeMusic implements Music {
     List<String> list = new ArrayList<>();
 
@@ -19,12 +19,12 @@ public class ReggaeMusic implements Music {
 
     @PostConstruct
     public void initReggaeMusicBean() {
-        System.out.println("Initialization");
+        //System.out.println("Initialization");
     }
 
     @PreDestroy
     public void destroyReggaeMusicBean() {
-        System.out.println("Destroying object");
+        //System.out.println("Destroying object");
     }
 
     @Override

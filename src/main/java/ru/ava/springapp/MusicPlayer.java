@@ -5,26 +5,25 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-@Component
+//@Component
 public class MusicPlayer {
     @Value("${musicPlayer.name}")
     private String name;
     @Value("${musicPlayer.volume}")
     private int volume;
 
-    private Music classicalMusic;
-    private Music rockMusic;
-    private Music reggaeMusic;
+    private List<Music> musicPlayList = new ArrayList<>();
 
-    @Autowired
     public MusicPlayer(@Qualifier("classicalMusic") Music classicalMusic,
                        @Qualifier("rockMusic") Music rockMusic,
                        @Qualifier("reggaeMusic") Music reggaeMusic) {
-        this.classicalMusic = classicalMusic;
-        this.rockMusic = rockMusic;
-        this.reggaeMusic = reggaeMusic;
+        this.musicPlayList.add(classicalMusic);
+        this.musicPlayList.add(rockMusic);
+        this.musicPlayList.add(reggaeMusic);
     }
 
     public String getName() {
@@ -35,19 +34,9 @@ public class MusicPlayer {
         return volume;
     }
 
-    public void playMusic(GenreMusic genreMusic) {
-        int num = new Random().nextInt(3);
-
-        switch (genreMusic){
-            case ROCK:
-                System.out.println(rockMusic.getSongs().get(num));
-                break;
-            case REGGAE:
-                System.out.println(reggaeMusic.getSongs().get(num));
-                break;
-            case CLASSICAL:
-                System.out.println(classicalMusic.getSongs().get(num));
-                break;
-        }
+    public String playMusic() {
+        int num = new Random().nextInt(musicPlayList.size());
+        List<String> list = musicPlayList.get(num).getSongs();
+        return "Playing: " + list.get(new Random().nextInt(list.size()));
     }
 }
